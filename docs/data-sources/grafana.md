@@ -83,13 +83,13 @@ Read-Only:
 Read-Only:
 
 - `additional_backup_regions` (List of String)
-- `alerting_enabled` (String)
+- `alerting_enabled` (Boolean)
 - `alerting_error_or_timeout` (String)
-- `alerting_max_annotations_to_keep` (String)
+- `alerting_max_annotations_to_keep` (Number)
 - `alerting_nodata_or_nullvalues` (String)
-- `allow_embedding` (String)
+- `allow_embedding` (Boolean)
 - `auth_azuread` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--auth_azuread))
-- `auth_basic_enabled` (String)
+- `auth_basic_enabled` (Boolean)
 - `auth_generic_oauth` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--auth_generic_oauth))
 - `auth_github` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--auth_github))
 - `auth_gitlab` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--auth_gitlab))
@@ -97,16 +97,17 @@ Read-Only:
 - `cookie_samesite` (String)
 - `custom_domain` (String)
 - `dashboards_min_refresh_interval` (String)
-- `dashboards_versions_to_keep` (String)
-- `dataproxy_send_user_header` (String)
-- `dataproxy_timeout` (String)
+- `dashboards_versions_to_keep` (Number)
+- `dataproxy_send_user_header` (Boolean)
+- `dataproxy_timeout` (Number)
 - `date_formats` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--date_formats))
-- `disable_gravatar` (String)
-- `editors_can_admin` (String)
+- `disable_gravatar` (Boolean)
+- `editors_can_admin` (Boolean)
 - `external_image_storage` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--external_image_storage))
 - `google_analytics_ua_id` (String)
 - `ip_filter` (List of String)
-- `metrics_enabled` (String)
+- `ip_filter_object` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--ip_filter_object))
+- `metrics_enabled` (Boolean)
 - `private_access` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--private_access))
 - `privatelink_access` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--privatelink_access))
 - `project_to_fork_from` (String)
@@ -114,17 +115,17 @@ Read-Only:
 - `recovery_basebackup_name` (String)
 - `service_to_fork_from` (String)
 - `smtp_server` (List of Object) (see [below for nested schema](#nestedobjatt--grafana_user_config--smtp_server))
-- `static_ips` (String)
-- `user_auto_assign_org` (String)
+- `static_ips` (Boolean)
+- `user_auto_assign_org` (Boolean)
 - `user_auto_assign_org_role` (String)
-- `viewers_can_edit` (String)
+- `viewers_can_edit` (Boolean)
 
 <a id="nestedobjatt--grafana_user_config--auth_azuread"></a>
 ### Nested Schema for `grafana_user_config.auth_azuread`
 
 Read-Only:
 
-- `allow_sign_up` (String)
+- `allow_sign_up` (Boolean)
 - `allowed_domains` (List of String)
 - `allowed_groups` (List of String)
 - `auth_url` (String)
@@ -138,7 +139,7 @@ Read-Only:
 
 Read-Only:
 
-- `allow_sign_up` (String)
+- `allow_sign_up` (Boolean)
 - `allowed_domains` (List of String)
 - `allowed_organizations` (List of String)
 - `api_url` (String)
@@ -155,11 +156,11 @@ Read-Only:
 
 Read-Only:
 
-- `allow_sign_up` (String)
+- `allow_sign_up` (Boolean)
 - `allowed_organizations` (List of String)
 - `client_id` (String)
 - `client_secret` (String)
-- `team_ids` (List of String)
+- `team_ids` (List of Number)
 
 
 <a id="nestedobjatt--grafana_user_config--auth_gitlab"></a>
@@ -167,7 +168,7 @@ Read-Only:
 
 Read-Only:
 
-- `allow_sign_up` (String)
+- `allow_sign_up` (Boolean)
 - `allowed_groups` (List of String)
 - `api_url` (String)
 - `auth_url` (String)
@@ -181,7 +182,7 @@ Read-Only:
 
 Read-Only:
 
-- `allow_sign_up` (String)
+- `allow_sign_up` (Boolean)
 - `allowed_domains` (List of String)
 - `client_id` (String)
 - `client_secret` (String)
@@ -213,12 +214,21 @@ Read-Only:
 - `secret_key` (String)
 
 
+<a id="nestedobjatt--grafana_user_config--ip_filter_object"></a>
+### Nested Schema for `grafana_user_config.ip_filter_object`
+
+Read-Only:
+
+- `description` (String)
+- `network` (String)
+
+
 <a id="nestedobjatt--grafana_user_config--private_access"></a>
 ### Nested Schema for `grafana_user_config.private_access`
 
 Read-Only:
 
-- `grafana` (String)
+- `grafana` (Boolean)
 
 
 <a id="nestedobjatt--grafana_user_config--privatelink_access"></a>
@@ -226,7 +236,7 @@ Read-Only:
 
 Read-Only:
 
-- `grafana` (String)
+- `grafana` (Boolean)
 
 
 <a id="nestedobjatt--grafana_user_config--public_access"></a>
@@ -234,7 +244,7 @@ Read-Only:
 
 Read-Only:
 
-- `grafana` (String)
+- `grafana` (Boolean)
 
 
 <a id="nestedobjatt--grafana_user_config--smtp_server"></a>
@@ -246,8 +256,8 @@ Read-Only:
 - `from_name` (String)
 - `host` (String)
 - `password` (String)
-- `port` (String)
-- `skip_verify` (String)
+- `port` (Number)
+- `skip_verify` (Boolean)
 - `starttls_policy` (String)
 - `username` (String)
 

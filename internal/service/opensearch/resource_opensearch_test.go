@@ -174,7 +174,7 @@ func testAccCheckAivenServiceOSAttributes(n string) resource.TestCheckFunc {
 			return fmt.Errorf("expected to get opensearch.public_access enabled from Aiven")
 		}
 
-		if a["opensearch_user_config.0.public_access.0.prometheus"] != "" {
+		if a["opensearch_user_config.0.public_access.0.prometheus"] != "false" {
 			return fmt.Errorf("expected to get a correct public_access prometheus from Aiven")
 		}
 

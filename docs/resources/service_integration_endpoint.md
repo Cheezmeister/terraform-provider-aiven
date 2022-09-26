@@ -23,17 +23,17 @@ The Service Integration Endpoint resource allows the creation and management of 
 
 ### Optional
 
-- `datadog_user_config` (Block List, Max: 1) Datadog specific user configurable settings (see [below for nested schema](#nestedblock--datadog_user_config))
-- `external_aws_cloudwatch_logs_user_config` (Block List, Max: 1) external AWS CloudWatch Logs specific user configurable settings (see [below for nested schema](#nestedblock--external_aws_cloudwatch_logs_user_config))
-- `external_aws_cloudwatch_metrics_user_config` (Block List, Max: 1) External AWS cloudwatch mertrics specific user configurable settings (see [below for nested schema](#nestedblock--external_aws_cloudwatch_metrics_user_config))
-- `external_elasticsearch_logs_user_config` (Block List, Max: 1) external elasticsearch specific user configurable settings (see [below for nested schema](#nestedblock--external_elasticsearch_logs_user_config))
-- `external_google_cloud_logging_user_config` (Block List, Max: 1) external Google Cloud Logginig specific user configurable settings (see [below for nested schema](#nestedblock--external_google_cloud_logging_user_config))
-- `external_kafka_user_config` (Block List, Max: 1) external Kafka specific user configurable settings (see [below for nested schema](#nestedblock--external_kafka_user_config))
-- `external_schema_registry_user_config` (Block List, Max: 1) External schema registry specific user configurable settings (see [below for nested schema](#nestedblock--external_schema_registry_user_config))
-- `jolokia_user_config` (Block List, Max: 1) Jolokia specific user configurable settings (see [below for nested schema](#nestedblock--jolokia_user_config))
-- `prometheus_user_config` (Block List, Max: 1) Prometheus specific user configurable settings (see [below for nested schema](#nestedblock--prometheus_user_config))
-- `rsyslog_user_config` (Block List, Max: 1) rsyslog specific user configurable settings (see [below for nested schema](#nestedblock--rsyslog_user_config))
-- `signalfx_user_config` (Block List, Max: 1) Signalfx specific user configurable settings (see [below for nested schema](#nestedblock--signalfx_user_config))
+- `datadog_user_config` (Block List, Max: 1) Datadog user configurable settings (see [below for nested schema](#nestedblock--datadog_user_config))
+- `external_aws_cloudwatch_logs_user_config` (Block List, Max: 1) ExternalAwsCloudwatchLogs user configurable settings (see [below for nested schema](#nestedblock--external_aws_cloudwatch_logs_user_config))
+- `external_aws_cloudwatch_metrics_user_config` (Block List, Max: 1) ExternalAwsCloudwatchMetrics user configurable settings (see [below for nested schema](#nestedblock--external_aws_cloudwatch_metrics_user_config))
+- `external_elasticsearch_logs_user_config` (Block List, Max: 1) ExternalElasticsearchLogs user configurable settings (see [below for nested schema](#nestedblock--external_elasticsearch_logs_user_config))
+- `external_google_cloud_logging_user_config` (Block List, Max: 1) ExternalGoogleCloudLogging user configurable settings (see [below for nested schema](#nestedblock--external_google_cloud_logging_user_config))
+- `external_kafka_user_config` (Block List, Max: 1) ExternalKafka user configurable settings (see [below for nested schema](#nestedblock--external_kafka_user_config))
+- `external_schema_registry_user_config` (Block List, Max: 1) ExternalSchemaRegistry user configurable settings (see [below for nested schema](#nestedblock--external_schema_registry_user_config))
+- `jolokia_user_config` (Block List, Max: 1) Jolokia user configurable settings (see [below for nested schema](#nestedblock--jolokia_user_config))
+- `prometheus_user_config` (Block List, Max: 1) Prometheus user configurable settings (see [below for nested schema](#nestedblock--prometheus_user_config))
+- `rsyslog_user_config` (Block List, Max: 1) Rsyslog user configurable settings (see [below for nested schema](#nestedblock--rsyslog_user_config))
+- `signalfx_user_config` (Block List, Max: 1) Signalfx user configurable settings (see [below for nested schema](#nestedblock--signalfx_user_config))
 
 ### Read-Only
 
@@ -47,10 +47,10 @@ Optional:
 
 - `datadog_api_key` (String, Sensitive) Datadog API key
 - `datadog_tags` (Block List, Max: 32) Custom tags provided by user (see [below for nested schema](#nestedblock--datadog_user_config--datadog_tags))
-- `disable_consumer_stats` (String) Disable consumer group metrics
-- `kafka_consumer_check_instances` (String) Number of separate instances to fetch kafka consumer statistics with
-- `kafka_consumer_stats_timeout` (String) Number of seconds that datadog will wait to get consumer statistics from brokers
-- `max_partition_contexts` (String) Maximum number of partition contexts to send
+- `disable_consumer_stats` (Boolean) Disable consumer group metrics
+- `kafka_consumer_check_instances` (Number) Number of separate instances to fetch kafka consumer statistics with
+- `kafka_consumer_stats_timeout` (Number) Number of seconds that datadog will wait to get consumer statistics from brokers
+- `max_partition_contexts` (Number) Maximum number of partition contexts to send
 - `site` (String) Datadog intake site. Defaults to datadoghq.com
 
 <a id="nestedblock--datadog_user_config--datadog_tags"></a>
@@ -59,7 +59,7 @@ Optional:
 Optional:
 
 - `comment` (String) Optional tag explanation
-- `tag` (String) Tag value
+- `tag` (String) Tag format and usage are described here: https://docs.datadoghq.com/getting_started/tagging. Tags with prefix 'aiven-' are reserved for Aiven.
 
 
 
@@ -91,9 +91,9 @@ Optional:
 Optional:
 
 - `ca` (String) PEM encoded CA certificate
-- `index_days_max` (String) Maximum number of days of logs to keep
+- `index_days_max` (Number) Maximum number of days of logs to keep
 - `index_prefix` (String) Elasticsearch index prefix
-- `timeout` (String) Elasticsearch request timeout limit
+- `timeout` (Number) Elasticsearch request timeout limit
 - `url` (String) Elasticsearch connection URL
 
 
@@ -104,7 +104,7 @@ Optional:
 
 - `log_id` (String) Google Cloud Logging log id
 - `project_id` (String) GCP project id.
-- `service_account_credentials` (String) Google Service Account Credentials
+- `service_account_credentials` (String) This is a JSON object with the fields documented in https://cloud.google.com/iam/docs/creating-managing-service-account-keys .
 
 
 <a id="nestedblock--external_kafka_user_config"></a>
@@ -162,10 +162,10 @@ Optional:
 - `format` (String) message format
 - `key` (String) PEM encoded client key
 - `logline` (String) custom syslog message format
-- `port` (String) rsyslog server port
+- `port` (Number) rsyslog server port
 - `sd` (String) Structured data block for log message
 - `server` (String) rsyslog server IP address or hostname
-- `tls` (String) Require TLS
+- `tls` (Boolean) Require TLS
 
 
 <a id="nestedblock--signalfx_user_config"></a>

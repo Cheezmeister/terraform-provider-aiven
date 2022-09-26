@@ -87,25 +87,35 @@ Read-Only:
 - `custom_domain` (String)
 - `influxdb` (List of Object) (see [below for nested schema](#nestedobjatt--influxdb_user_config--influxdb))
 - `ip_filter` (List of String)
+- `ip_filter_object` (List of Object) (see [below for nested schema](#nestedobjatt--influxdb_user_config--ip_filter_object))
 - `private_access` (List of Object) (see [below for nested schema](#nestedobjatt--influxdb_user_config--private_access))
 - `privatelink_access` (List of Object) (see [below for nested schema](#nestedobjatt--influxdb_user_config--privatelink_access))
 - `project_to_fork_from` (String)
 - `public_access` (List of Object) (see [below for nested schema](#nestedobjatt--influxdb_user_config--public_access))
 - `recovery_basebackup_name` (String)
 - `service_to_fork_from` (String)
-- `static_ips` (String)
+- `static_ips` (Boolean)
 
 <a id="nestedobjatt--influxdb_user_config--influxdb"></a>
 ### Nested Schema for `influxdb_user_config.influxdb`
 
 Read-Only:
 
-- `log_queries_after` (String)
-- `max_connection_limit` (String)
-- `max_row_limit` (String)
-- `max_select_buckets` (String)
-- `max_select_point` (String)
-- `query_timeout` (String)
+- `log_queries_after` (Number)
+- `max_connection_limit` (Number)
+- `max_row_limit` (Number)
+- `max_select_buckets` (Number)
+- `max_select_point` (Number)
+- `query_timeout` (Number)
+
+
+<a id="nestedobjatt--influxdb_user_config--ip_filter_object"></a>
+### Nested Schema for `influxdb_user_config.ip_filter_object`
+
+Read-Only:
+
+- `description` (String)
+- `network` (String)
 
 
 <a id="nestedobjatt--influxdb_user_config--private_access"></a>
@@ -113,7 +123,7 @@ Read-Only:
 
 Read-Only:
 
-- `influxdb` (String)
+- `influxdb` (Boolean)
 
 
 <a id="nestedobjatt--influxdb_user_config--privatelink_access"></a>
@@ -121,7 +131,7 @@ Read-Only:
 
 Read-Only:
 
-- `influxdb` (String)
+- `influxdb` (Boolean)
 
 
 <a id="nestedobjatt--influxdb_user_config--public_access"></a>
@@ -129,7 +139,7 @@ Read-Only:
 
 Read-Only:
 
-- `influxdb` (String)
+- `influxdb` (Boolean)
 
 
 
