@@ -289,7 +289,7 @@ func resourceVPCPeeringConnectionRead(_ context.Context, d *schema.ResourceData,
 	if isAzure {
 		if peerResourceGroup, ok := d.GetOk("peer_resource_group"); ok {
 			pc, err = client.VPCPeeringConnections.GetVPCPeeringWithResourceGroup(
-				p.projectName, p.vpcID, p.peerCloudAccount, p.peerVPC, p.peerRegion, peerResourceGroup.(string))
+				p.projectName, p.vpcID, p.peerCloudAccount, p.peerVPC, p.peerRegion, OptionalStringPointer(peerResourceGroup.(string)))
 			if err != nil {
 				return diag.FromErr(schemautil.ResourceReadHandleNotFound(err, d))
 			}
@@ -350,6 +350,7 @@ func resourceVPCPeeringConnectionDelete(ctx context.Context, d *schema.ResourceD
 		return diag.Errorf("Error deleting VPC peering connection: %s", err)
 	}
 
+	peerResourceGroup := d.Get("peer_resource_group").(string)
 	stateChangeConf := &resource.StateChangeConf{
 		Pending: []string{
 			"ACTIVE",
@@ -373,7 +374,7 @@ func resourceVPCPeeringConnectionDelete(ctx context.Context, d *schema.ResourceD
 					p.peerCloudAccount,
 					p.peerVPC,
 					p.peerRegion,
-					d.Get("peer_resource_group").(string), // was already checked
+					OptionalStringPointer(peerResourceGroup), // was already checked
 				)
 			} else {
 				pc, err = client.VPCPeeringConnections.GetVPCPeering(
@@ -633,4 +634,12 @@ func validateVPCID(i interface{}, k string) (warnings []string, errors []error) 
 	}
 
 	return warnings, errors
+}
+
+// OptionalStringPointer returns string pointer or nil
+func OptionalStringPointer(s string) *string {
+	if s == "" {
+		return nil
+	}
+	return &s
 }
